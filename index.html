@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHAN Ting Hin | Education Technology</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      background: #f7f8fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+      padding: 72px 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      margin: 0 0 12px;
+    }
+
+    header p {
+      font-size: 1.15rem;
+      max-width: 760px;
+      margin: 0 auto;
+      opacity: 0.95;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #1e3a8a;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 12px;
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CHAN Ting Hin</h1>
+    <p>
+      Education Technology · STEAM Education · AI in Education<br>
+      Designing practical digital tools and learning materials for primary education.
+    </p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Featured Tools</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>QR Code Generator</h3>
+          <p>A school-friendly QR code generator with optional logo and rounded frame design.</p>
+          <a href="/Tools/apskt_QRcode.html">Open Tool →</a>
+        </div>
+
+        <div class="card">
+          <h3>Teaching Tools</h3>
+          <p>Interactive HTML tools for mathematics, STEAM learning, and classroom demonstrations.</p>
+          <a href="/Tools/">View Tools →</a>
+        </div>
+
+        <div class="card">
+          <h3>Learning Materials</h3>
+          <p>Digital learning resources and classroom materials for primary mathematics and STEM education.</p>
+          <a href="/LearningMaterial/">View Materials →</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Research Interests</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>AI in Education</h3>
+          <p>Exploring how AI tools support learning, teaching, school administration, and ethical use in education.</p>
+        </div>
+
+        <div class="card">
+          <h3>STEAM Education</h3>
+          <p>Designing interdisciplinary learning experiences that connect classroom knowledge with authentic contexts.</p>
+        </div>
+
+        <div class="card">
+          <h3>Mathematics Learning</h3>
+          <p>Developing visual, interactive, and concept-based tools for primary mathematics learning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>About</h2>
+      <div class="card">
+        <p>
+          I am an educator interested in STEAM education, artificial intelligence in education,
+          computational thinking, and the design of practical digital tools for schools.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 CHAN Ting Hin. Built with GitHub Pages.
+  </footer>
+
+</body>
+</html>

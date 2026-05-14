@@ -3,165 +3,789 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CHAN Ting Hin | Education Technology</title>
+  <meta name="description" content="CHAN Ting Hin 的教育科技作品入口，整理數學互動教材、STEAM、運算思維與學校教學工具。" />
+  <title>CHAN Ting Hin | 教育科技作品集</title>
   <style>
+    :root {
+      --bg: #f4f8fb;
+      --surface: #ffffff;
+      --surface-soft: #eaf6f2;
+      --text: #17324d;
+      --muted: #5d7285;
+      --primary: #176b87;
+      --primary-dark: #0f4f68;
+      --accent: #2aa876;
+      --accent-soft: #d9f3e9;
+      --border: #d7e5ec;
+      --shadow: 0 18px 45px rgba(23, 50, 77, 0.10);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-      background: #f7f8fb;
-      color: #1f2937;
-      line-height: 1.6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(42, 168, 118, 0.16), transparent 32rem),
+        linear-gradient(180deg, #f8fcff 0%, var(--bg) 46%, #eef7f5 100%);
+      color: var(--text);
+      line-height: 1.65;
     }
 
-    header {
-      background: linear-gradient(135deg, #1e3a8a, #2563eb);
-      color: white;
-      padding: 72px 24px;
-      text-align: center;
+    a {
+      color: inherit;
     }
 
-    header h1 {
-      font-size: 2.6rem;
-      margin: 0 0 12px;
+
+    .sr-only {
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
     }
 
-    header p {
-      font-size: 1.15rem;
-      max-width: 760px;
+    .skip-link {
+      background: var(--primary-dark);
+      color: #fff;
+      left: 1rem;
+      padding: 0.65rem 1rem;
+      position: absolute;
+      top: -4rem;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(15, 79, 104, 0.95), rgba(23, 107, 135, 0.92)),
+        radial-gradient(circle at 85% 15%, rgba(42, 168, 118, 0.5), transparent 24rem);
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 42px 42px;
+      content: "";
+      inset: 0;
+      opacity: 0.35;
+      position: absolute;
+    }
+
+    .hero-inner,
+    main,
+    .footer-inner {
       margin: 0 auto;
-      opacity: 0.95;
+      max-width: 1180px;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+      padding-bottom: 4.25rem;
+      padding-top: 4.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      align-items: center;
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      display: inline-flex;
+      font-size: 0.92rem;
+      gap: 0.5rem;
+      margin: 0 0 1rem;
+      padding: 0.45rem 0.85rem;
+    }
+
+    .eyebrow::before {
+      background: #7ee0b8;
+      border-radius: 50%;
+      content: "";
+      height: 0.55rem;
+      width: 0.55rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.35rem, 6vw, 4.8rem);
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      max-width: 760px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .button {
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      font-weight: 700;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.78rem 1.15rem;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: #fff;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+      color: var(--primary-dark);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.32);
+      color: #fff;
+    }
+
+    .hero-panel {
+      align-self: end;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: var(--radius);
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.18);
+      padding: 1.3rem;
+    }
+
+    .hero-panel h2 {
+      color: #fff;
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-panel ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-panel li {
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 0.72rem 0;
     }
 
     main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 20px;
+      padding-bottom: 4rem;
+      padding-top: 3.2rem;
     }
 
     section {
-      margin-bottom: 48px;
+      margin-bottom: 4rem;
+    }
+
+    .section-heading {
+      align-items: end;
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      margin-bottom: 1.35rem;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.25rem;
+      text-transform: uppercase;
     }
 
     h2 {
-      font-size: 1.6rem;
-      margin-bottom: 20px;
-      border-left: 5px solid #2563eb;
-      padding-left: 12px;
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 0;
+    }
+
+    .section-note {
+      color: var(--muted);
+      margin-bottom: 0;
+      max-width: 640px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      gap: 1.15rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .card {
-      background: white;
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: var(--surface);
+      border: 1px solid rgba(215, 229, 236, 0.86);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 1.35rem;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
     }
 
     .card:hover {
+      border-color: rgba(42, 168, 118, 0.46);
+      box-shadow: 0 24px 60px rgba(23, 50, 77, 0.14);
       transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
     }
 
     .card h3 {
-      margin-top: 0;
+      color: var(--primary-dark);
+      font-size: 1.18rem;
+      line-height: 1.35;
+      margin-bottom: 0.55rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .label-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .pill {
+      background: var(--accent-soft);
+      border-radius: 999px;
+      color: #166c51;
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.35rem 0.65rem;
+    }
+
+    .pill-muted {
+      background: #eef5f9;
+      color: var(--primary);
+    }
+
+    .card .button {
+      background: var(--primary);
+      color: #fff;
+      margin-top: auto;
+      width: fit-content;
+    }
+
+    .card .button:hover,
+    .card .button:focus-visible {
+      background: var(--primary-dark);
+      box-shadow: 0 12px 24px rgba(23, 107, 135, 0.22);
+    }
+
+    .about-card {
+      background: linear-gradient(135deg, #ffffff, #eefaf5);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      padding: clamp(1.35rem, 4vw, 2.2rem);
+    }
+
+    .focus-list {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: 0;
+      padding: 0;
+    }
+
+    .focus-list li {
+      align-items: center;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(215, 229, 236, 0.9);
+      border-radius: 16px;
+      display: flex;
+      font-weight: 700;
+      gap: 0.6rem;
+      padding: 0.75rem;
+    }
+
+    .focus-list li::before {
+      background: var(--accent);
+      border-radius: 50%;
+      content: "";
+      flex: 0 0 0.55rem;
+      height: 0.55rem;
+      width: 0.55rem;
+    }
+
+    .filter-panel {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px);
+      box-shadow: 0 18px 45px rgba(23, 50, 77, 0.08);
+      margin-bottom: 1.4rem;
+      padding: 1rem;
+    }
+
+    .search-row {
+      display: grid;
+      gap: 0.8rem;
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .search-input {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      font: inherit;
+      min-height: 50px;
+      padding: 0.8rem 1.05rem;
+      width: 100%;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(42, 168, 118, 0.14);
+      outline: none;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.8rem;
+    }
+
+    .filter-button {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--primary-dark);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      min-height: 42px;
+      padding: 0.55rem 0.9rem;
+    }
+
+    .filter-button[aria-pressed="true"] {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .category-block {
+      margin-top: 1.8rem;
+    }
+
+    .category-title {
+      align-items: center;
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .category-title h3 {
       font-size: 1.2rem;
-      color: #1e3a8a;
+      margin-bottom: 0;
     }
 
-    .card a {
-      display: inline-block;
-      margin-top: 12px;
-      color: #2563eb;
-      font-weight: 600;
-      text-decoration: none;
+    .count-badge {
+      background: #e8f3f8;
+      border-radius: 999px;
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 0.28rem 0.58rem;
     }
 
-    .card a:hover {
-      text-decoration: underline;
+    .empty-state {
+      background: #fff;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      padding: 1.4rem;
+      text-align: center;
+    }
+
+    .helper-card {
+      background: #fff;
+      border-left: 5px solid var(--accent);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.25rem;
+    }
+
+    .helper-card code {
+      background: #edf7f3;
+      border-radius: 8px;
+      color: #115a44;
+      padding: 0.12rem 0.35rem;
     }
 
     footer {
-      text-align: center;
-      padding: 32px 20px;
-      color: #6b7280;
-      font-size: 0.9rem;
+      background: #0f3042;
+      color: rgba(255, 255, 255, 0.82);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: space-between;
+    }
+
+    .footer-inner p {
+      margin: 0;
+    }
+
+    @media (max-width: 880px) {
+      .hero-inner,
+      .about-card {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-inner {
+        padding-bottom: 3.2rem;
+        padding-top: 3.4rem;
+      }
+
+      .grid,
+      .focus-list,
+      .search-row {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .button,
+      .card .button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#apps">跳到工具清單</a>
 
-  <header>
-    <h1>CHAN Ting Hin</h1>
-    <p>
-      Education Technology · STEAM Education · AI in Education<br>
-      Designing practical digital tools and learning materials for primary education.
-    </p>
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">GitHub Pages 教育科技入口</p>
+        <h1>CHAN Ting Hin<br />教育科技作品集</h1>
+        <p class="hero-subtitle">
+          整理數學互動教材、STEAM / Computational Thinking 活動、AI in Education 研究與學校實用工具，方便教師、學生及學校同工快速開啟網頁應用。
+        </p>
+        <div class="hero-actions" aria-label="主要導覽">
+          <a class="button button-primary" href="#featured">查看精選工具</a>
+          <a class="button button-secondary" href="#apps">搜尋全部作品</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="作品分類摘要">
+        <h2>Portfolio Focus</h2>
+        <ul>
+          <li>Primary Mathematics Learning</li>
+          <li>STEAM & Computational Thinking</li>
+          <li>School-friendly Teaching Tools</li>
+          <li>AI in Education Practice</li>
+        </ul>
+      </aside>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>Featured Tools</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>QR Code Generator</h3>
-          <p>A school-friendly QR code generator with optional logo and rounded frame design.</p>
-          <a href="/Tools/apskt_QRcode.html">Open Tool →</a>
+  <main id="main-content">
+    <section id="featured" aria-labelledby="featured-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Featured Apps</p>
+          <h2 id="featured-title">精選應用</h2>
         </div>
+        <p class="section-note">常用及優先展示的 HTML 教學工具，可直接在 GitHub Pages 開啟。</p>
+      </div>
+      <div class="grid" id="featuredApps"></div>
+    </section>
 
-        <div class="card">
-          <h3>Teaching Tools</h3>
-          <p>Interactive HTML tools for mathematics, STEAM learning, and classroom demonstrations.</p>
-          <a href="/Tools/">View Tools →</a>
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">About</p>
+          <h2 id="about-title">關於我</h2>
         </div>
-
-        <div class="card">
-          <h3>Learning Materials</h3>
-          <p>Digital learning resources and classroom materials for primary mathematics and STEM education.</p>
-          <a href="/LearningMaterial/">View Materials →</a>
+      </div>
+      <div class="about-card">
+        <div>
+          <p>
+            我是 CHAN Ting Hin，一位關注教育科技實踐的教育工作者。我的作品聚焦於 AI in Education、STEAM education、computational thinking，以及小學數學學習中的互動化、視覺化和即時回饋設計。
+          </p>
+          <p>
+            這個首頁用作個人 GitHub Pages 入口，集中連結不同 repository 內的 HTML 教材、課堂活動及學校行政工具，讓使用者能以關鍵字或分類快速尋找合適資源。
+          </p>
         </div>
+        <ul class="focus-list" aria-label="研究及設計方向">
+          <li>AI in Education</li>
+          <li>STEAM Education</li>
+          <li>Computational Thinking</li>
+          <li>Primary Mathematics</li>
+        </ul>
       </div>
     </section>
 
-    <section>
-      <h2>Research Interests</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>AI in Education</h3>
-          <p>Exploring how AI tools support learning, teaching, school administration, and ethical use in education.</p>
+    <section id="apps" aria-labelledby="apps-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">App Portal</p>
+          <h2 id="apps-title">全部工具與教材</h2>
         </div>
-
-        <div class="card">
-          <h3>STEAM Education</h3>
-          <p>Designing interdisciplinary learning experiences that connect classroom knowledge with authentic contexts.</p>
-        </div>
-
-        <div class="card">
-          <h3>Mathematics Learning</h3>
-          <p>Developing visual, interactive, and concept-based tools for primary mathematics learning.</p>
-        </div>
+        <p class="section-note">輸入名稱、描述、repository 或分類，即可即時篩選工具。</p>
       </div>
+
+      <div class="filter-panel" role="search" aria-label="搜尋及分類篩選工具">
+        <div class="search-row">
+          <label class="sr-only" for="searchInput">搜尋工具</label>
+          <input class="search-input" id="searchInput" type="search" placeholder="搜尋：加法、QR Code、數學、STEAM…" autocomplete="off" />
+          <button class="filter-button" id="clearSearch" type="button">清除搜尋</button>
+        </div>
+        <div class="filter-buttons" id="categoryFilters" aria-label="分類篩選"></div>
+      </div>
+
+      <div id="appResults" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden>找不到符合條件的工具。請嘗試其他關鍵字或選擇「全部」。</div>
     </section>
 
-    <section>
-      <h2>About</h2>
-      <div class="card">
+    <section aria-labelledby="add-apps-title">
+      <div class="helper-card">
+        <p class="section-kicker">Maintain</p>
+        <h2 id="add-apps-title">日後如何加入更多 Apps</h2>
         <p>
-          I am an educator interested in STEAM education, artificial intelligence in education,
-          computational thinking, and the design of practical digital tools for schools.
+          在 <code>index.html</code> 內的 <code>apps</code> 陣列新增一個物件，填上 <code>title</code>、<code>description</code>、<code>category</code>、<code>repository</code>、<code>url</code>，如要在頁首精選區展示，將 <code>featured</code> 設為 <code>true</code>。
         </p>
       </div>
     </section>
   </main>
 
   <footer>
-    © 2026 CHAN Ting Hin. Built with GitHub Pages.
+    <div class="footer-inner">
+      <p>© <span id="year">2026</span> CHAN Ting Hin</p>
+      <p>Built with GitHub Pages · Last updated <span id="updatedYear">2026</span></p>
+    </div>
   </footer>
 
+  <script>
+    const categories = [
+      "數學互動教材",
+      "STEAM / Computational Thinking",
+      "教學工具",
+      "學校行政及實用工具",
+      "研究與教育科技作品"
+    ];
+
+    const apps = [
+      {
+        title: "18以內加法挑戰",
+        description: "30秒限時加法遊戲，支援即時判斷、分數紀錄及龍虎榜概念。",
+        category: "數學互動教材",
+        repository: "LearningMaterial",
+        url: "/LearningMaterial/addition18.html",
+        featured: true,
+        keywords: ["addition", "加法", "小學數學", "mental arithmetic", "learning game"]
+      },
+      {
+        title: "QR Code Generator",
+        description: "適合學校使用的 QR Code 產生器，支援校名、Logo 及外框設計。",
+        category: "教學工具",
+        repository: "Tools",
+        url: "/Tools/apskt_QRcode.html",
+        featured: true,
+        keywords: ["QR", "QRCode", "school", "校務", "teaching tool"]
+      }
+
+      /*
+        Add more standalone HTML apps here later, for example:
+        {
+          title: "作品名稱",
+          description: "一句清楚描述用途。",
+          category: "STEAM / Computational Thinking",
+          repository: "LearningMaterial",
+          url: "/LearningMaterial/example.html",
+          featured: false,
+          keywords: ["STEAM", "coding", "關鍵字"]
+        }
+      */
+    ];
+
+    const featuredApps = document.querySelector("#featuredApps");
+    const appResults = document.querySelector("#appResults");
+    const emptyState = document.querySelector("#emptyState");
+    const searchInput = document.querySelector("#searchInput");
+    const clearSearch = document.querySelector("#clearSearch");
+    const categoryFilters = document.querySelector("#categoryFilters");
+    const year = new Date().getFullYear();
+    let activeCategory = "全部";
+
+    document.querySelector("#year").textContent = year;
+    document.querySelector("#updatedYear").textContent = year;
+
+    function createAppCard(app) {
+      const article = document.createElement("article");
+      article.className = "card";
+
+      const labels = document.createElement("div");
+      labels.className = "label-row";
+      labels.innerHTML = `
+        <span class="pill">${app.category}</span>
+        <span class="pill pill-muted">${app.repository}</span>
+      `;
+
+      const title = document.createElement("h3");
+      title.textContent = app.title;
+
+      const description = document.createElement("p");
+      description.textContent = app.description;
+
+      const link = document.createElement("a");
+      link.className = "button";
+      link.href = app.url;
+      link.textContent = "開啟工具";
+      link.setAttribute("aria-label", `開啟工具：${app.title}`);
+
+      article.append(labels, title, description, link);
+      return article;
+    }
+
+    function renderFeatured() {
+      const featured = apps.filter((app) => app.featured);
+      featuredApps.replaceChildren(...featured.map(createAppCard));
+    }
+
+    function createFilterButton(category) {
+      const button = document.createElement("button");
+      button.className = "filter-button";
+      button.type = "button";
+      button.textContent = category;
+      button.setAttribute("aria-pressed", String(category === activeCategory));
+      button.addEventListener("click", () => {
+        activeCategory = category;
+        renderFilters();
+        renderApps();
+      });
+      return button;
+    }
+
+    function renderFilters() {
+      const filterNames = ["全部", ...categories];
+      categoryFilters.replaceChildren(...filterNames.map(createFilterButton));
+    }
+
+    function matchesSearch(app, query) {
+      const searchableText = [
+        app.title,
+        app.description,
+        app.category,
+        app.repository,
+        app.url,
+        ...(app.keywords || [])
+      ].join(" ").toLowerCase();
+      return searchableText.includes(query.trim().toLowerCase());
+    }
+
+    function renderApps() {
+      const query = searchInput.value;
+      const filteredApps = apps.filter((app) => {
+        const categoryMatch = activeCategory === "全部" || app.category === activeCategory;
+        return categoryMatch && matchesSearch(app, query);
+      });
+
+      const blocks = categories.map((category) => {
+        const categoryApps = filteredApps.filter((app) => app.category === category);
+        if (!categoryApps.length) return null;
+
+        const block = document.createElement("section");
+        block.className = "category-block";
+        block.setAttribute("aria-label", category);
+
+        const heading = document.createElement("div");
+        heading.className = "category-title";
+        heading.innerHTML = `<h3>${category}</h3><span class="count-badge">${categoryApps.length}</span>`;
+
+        const grid = document.createElement("div");
+        grid.className = "grid";
+        grid.append(...categoryApps.map(createAppCard));
+
+        block.append(heading, grid);
+        return block;
+      }).filter(Boolean);
+
+      appResults.replaceChildren(...blocks);
+      emptyState.hidden = filteredApps.length > 0;
+    }
+
+    searchInput.addEventListener("input", renderApps);
+    clearSearch.addEventListener("click", () => {
+      searchInput.value = "";
+      searchInput.focus();
+      renderApps();
+    });
+
+    renderFeatured();
+    renderFilters();
+    renderApps();
+  </script>
 </body>
 </html>
